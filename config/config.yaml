@@ -1,0 +1,92 @@
+# hardware
+gpu: [ 0 ]
+distributed: False
+address: '127.0.0.1'
+port: '23456'
+# models configuration
+model: "MDDR"
+# for SRMD
+in_channels: 6
+out_channels: 3
+num_blocks: 18
+conv_dim: 128
+# for classifier RRDB
+channels: 64
+grow_channels: 32
+scale_ratio: 0.2
+n_classes: 3
+RoIPooling_shape: [7,7]
+# for VGG19
+feature_layer: 35
+# for patchGAN
+# for RaGAN
+ndf: 64
+n_layers: 3
+# dataset
+dataset: "customize"
+color_space: 'RGB'
+data_channel: 3
+img_size: 128
+data_range: 800
+repeat: 20
+same_size: True
+upscaleFactor: [ 1 ]
+test_upscaleFactor: 1
+scales: [ 1.0, 0.7, 0.5 ]
+rotations: [ 0, 90, 180, 270 ]
+flips: [ 0, 1, 2 ]
+num_workers: 8
+platform: linux
+force_rebuild: False
+seed: 123
+data_flist:
+  windows:
+    train_HR_dir: "F:\\cache\\data\\291-image\\HR_train"
+    train_LR_dir: "F:\\cache\\data\\291-image\\LR_train"
+    test_HR_dir: "F:\\cache\\data\\Set5,Set14\\set5_HR\\3"
+    test_LR_dir: "F:\\cache\\data\\Set5,Set14\\set5_LR\\3"
+  linux:
+    train_HR_dir: "/data/data/DIV2K/DIV2K/DIV2K_train_HR/"    # For DIV2K: 1-800 for train, 801-900 for test
+    test_HR_dir: "/data/data/DIV2K/DIV2K/DIV2K_train_HR/"
+    train_LR_dir:
+      blur: "/data/data/DIV2K/DIV2K/DIV2K_train_LR_iso_blur/"
+      noise: "/data/data/DIV2K/DIV2K/DIV2K_train_LR_noise_15"
+      downsampling: "/data/data/DIV2K/DIV2K/DIV2K_train_LR_bicubic_X2/"
+    test_LR_dir:
+      blur: "/data/data/DIV2K/DIV2K/DIV2K_train_LR_iso_blur/"
+      noise: "/data/data/DIV2K/DIV2K/DIV2K_train_LR_noise_15"
+      downsampling: "/data/data/DIV2K/DIV2K/DIV2K_train_LR_bicubic_X2/"
+# experiment
+batch_size: 16  # 16
+lambda_pixel: 1e-2
+lambda_adv: 5e-3
+# classifier
+lr_c: 0.1
+beta1_c: 0.5
+beta2_c: 0.999
+warmup_c: 0
+# generator
+lr_g: 0.001
+beta1_g: 0.5
+beta2_g: 0.999
+warmup_g: 0
+# RaGAN
+lr_d: 0.0002
+beta1_d: 0.5
+beta2_d: 0.999
+# PatchGAN
+lr_i: 0.0002
+beta1_i: 0.5
+beta2_i: 0.999
+n_epochs: 200
+milestones: [ 10, 20, 30, 40, 50, 60 ]
+# checkpoint
+checkpoint_interval: 1
+checkpoint_dir: "checkpoints/"
+# visualization
+tensorboard_log_dir: "runs/mddr"
+tensorboard_image_interval: 1
+tensorboard_image_sample: 10
+tensorboard_image_size: [ 256, 256 ]
+tensorboard_draw_model: True
+tensorboard_input: [ 64, 1, 128, 128 ]
