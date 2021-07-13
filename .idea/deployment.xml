@@ -23,6 +23,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="hit@10.249.46.33:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="hit@10.249.47.152:22">
         <serverdata>
           <mappings>
